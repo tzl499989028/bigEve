@@ -32,8 +32,64 @@
 
     </div>
 
-   
+
+
+    <script src="./jquery-3.4.1.js"></script>
+    <script>
+
+        /*
+        请求地址：http://localhost:8000/admin/login 网络地址: https://autumnfish.cn/big/admin/login
+    
+        请求方式：post
+        
+        请求参数：
+        
+        名称	类型	说明
+        user_name	string	用户名（admin）
+        password	string	密码(123456)
+        */
+        $(document).ready(function () {
+            $('.input_sub').on('click', function (e) {
+                      e.preventDefault();
+                var userName = $('.input_txt').val().trim();
+                var password = $('.input_pass').val();
+                if (userName == "" || password == "") {
+                    alert('用户名或密码不能为空')
+                }
+
+
+                $.ajax({
+                    type:'post',
+                    url:'https://autumnfish.cn/big/admin/login',
+                    data:{
+                        user_name:userName,
+                        password:password
+                    },
+                    success:function(data){
+                        if(data.code == 200){
+                            window.location.href = "./login_after.html"
+                        }
+                        else{
+                            alert('用户名或密码错误')
+                        }
+                        
+                    }
+
+                })
+
+
+
+
+
+
+            })
+
+
+
+        })
     </script>
+
+
 </body>
 
 </html>
